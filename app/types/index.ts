@@ -1,6 +1,6 @@
 export interface GalleryImage {
-  id: number;
+  _id?: string;
   imageUrl: string;
   prompt: string;
   alt: string;
-} 
+}

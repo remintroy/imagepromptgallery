@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { GalleryImage } from '../types';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { GalleryImage } from "../types";
 
 interface PromptModalProps {
   image: GalleryImage;
@@ -16,16 +16,16 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
       setIsVisible(true);
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
       const timer = setTimeout(() => setIsVisible(false), 200);
       return () => clearTimeout(timer);
     }
-    
+
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 
@@ -35,7 +35,7 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy text: ', err);
+      console.error("Failed to copy text: ", err);
     }
   };
 
@@ -46,29 +46,28 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       onClose();
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener("keydown", handleKeyDown);
     } else {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
-
 
   if (!isVisible) return null;
 
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 transition-opacity duration-200 ${
-        isOpen ? 'opacity-100' : 'opacity-0'
+        isOpen ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleBackdropClick}
       role="dialog"
@@ -81,7 +80,7 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
       {/* Modal */}
       <div
         className={`relative w-full max-w-4xl max-h-[95vh] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl transition-all duration-300 transform flex flex-col ${
-          isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
         }`}
       >
         {/* Header */}
@@ -90,9 +89,7 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
             <h2 id="prompt-modal-title" className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">
               Image Prompt
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">
-              {image.alt}
-            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">{image.alt}</p>
           </div>
           <button
             onClick={onClose}
@@ -115,12 +112,12 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
                   src={image.imageUrl}
                   alt={image.alt}
                   fill
-                  className="object-cover"
+                  className="w-full h-full object-scale-down"
                   sizes="(max-width: 1024px) 90vw, 40vw"
                 />
               </div>
               <div className="mt-4 flex items-center justify-between text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                <span>Image ID: {image.id}</span>
+                <span>Image ID: {image?._id}</span>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span>Ready to copy</span>
@@ -131,15 +128,13 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
             {/* Prompt */}
             <div className="flex flex-col">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3 sm:gap-0">
-                <h3 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white">
-                  Creation Prompt
-                </h3>
+                <h3 className="text-base md:text-lg font-semibold text-slate-900 dark:text-white">Creation Prompt</h3>
                 <button
                   onClick={copyToClipboard}
                   className={`flex items-center justify-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 w-full sm:w-auto ${
                     isCopied
-                      ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                      : 'bg-purple-100 text-purple-700 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:hover:bg-purple-900/50'
+                      ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                      : "bg-purple-100 text-purple-700 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:hover:bg-purple-900/50"
                   }`}
                 >
                   {isCopied ? (
@@ -152,7 +147,12 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
                   ) : (
                     <>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
                       </svg>
                       <span>Copy Prompt</span>
                     </>
@@ -170,20 +170,16 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
               <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-4">
                 <div className="text-center p-2 sm:p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
                   <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                    {image.prompt.split(' ').length}
+                    {image.prompt.split(" ").length}
                   </div>
                   <div className="text-xs text-slate-500 dark:text-slate-400">Words</div>
                 </div>
                 <div className="text-center p-2 sm:p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
-                  <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                    {image.prompt.length}
-                  </div>
+                  <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">{image.prompt.length}</div>
                   <div className="text-xs text-slate-500 dark:text-slate-400">Characters</div>
                 </div>
                 <div className="text-center p-2 sm:p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
-                  <div className="text-base sm:text-lg font-bold text-purple-600 dark:text-purple-400">
-                    AI Ready
-                  </div>
+                  <div className="text-base sm:text-lg font-bold text-purple-600 dark:text-purple-400">AI Ready</div>
                   <div className="text-xs text-slate-500 dark:text-slate-400">Status</div>
                 </div>
               </div>
@@ -217,4 +213,4 @@ export function PromptModal({ image, isOpen, onClose }: PromptModalProps) {
       </div>
     </div>
   );
-} 
+}
