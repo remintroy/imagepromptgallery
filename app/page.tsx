@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { ImageGallery } from './components/ImageGallery';
-import { PromptModal } from './components/PromptModal';
+import { PromptModal } from '@/app/components/PromptModal';
 
 // Sample data for the gallery
 const galleryData = [
@@ -96,7 +96,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       {/* Header */}
       <header className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -120,12 +120,27 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <ImageGallery 
           images={galleryData} 
           onImageClick={handleImageClick} 
         />
       </main>
+
+      {/* Footer */}
+      <footer className="w-full flex items-center justify-center sticky bottom-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-700" style={{ height: '40px' }}>
+        <p className="text-xs text-slate-500 dark:text-slate-400">
+          Powered by{' '}
+          <a
+            href="https://mastrovia.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+          >
+            Mastrovia
+          </a>
+        </p>
+      </footer>
 
       {/* Modal */}
       {isModalOpen && selectedImage && (
