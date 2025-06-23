@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteTitle = "Image Prompt Gallery - AI Art Prompts Collection";
-const siteDescription = "A beautiful gallery of AI-generated images with their creation prompts. Click on any image to view and copy the prompt used to create it.";
+const siteDescription =
+  "A beautiful gallery of AI-generated images with their creation prompts. Click on any image to view and copy the prompt used to create it.";
 const siteUrl = "https://imagepromptgallery.vercel.app"; // TODO: Set your real domain
 const siteImage = "https://imagepromptgallery.vercel.app/images/website-preview.png"; // TODO: Set a real OG image
 
@@ -23,6 +24,9 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   manifest: "/manifest.json",
+  openGraph: {
+    images: siteImage,
+  },
 };
 
 export default function RootLayout({
@@ -51,10 +55,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-LEB2S0SQLQ"
-          strategy="afterInteractive"
-        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-LEB2S0SQLQ" strategy="afterInteractive" />
         <Script id="gtag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
