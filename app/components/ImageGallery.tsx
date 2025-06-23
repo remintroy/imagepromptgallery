@@ -38,7 +38,7 @@ export function ImageGallery({ images, onImageClick }: ImageGalleryProps) {
 
   return (
     <div className="w-full">
-      <div className={`columns-1 sm:columns-2 md:columns-2 lg:columns-3 gap-4 p-4`}>
+      <div className={`columns-1 sm:columns-2 md:columns-2 lg:columns-3 gap-4 sm:p-4`}>
         {organizedImages.map((column, columnIndex) => (
           <div key={columnIndex} className="flex flex-col gap-4">
             {column.map((image) => (
