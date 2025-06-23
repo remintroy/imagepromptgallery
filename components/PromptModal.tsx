@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { GalleryImage } from "../types";
+import { GalleryImage } from "../app/types";
 
 interface PromptModalProps {
   image: GalleryImage;

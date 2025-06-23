@@ -1,5 +1,5 @@
 import { getPromptDataPaginated } from "@/models/imagePromptsRepository";
-import { GalleryPage } from "./components/GalleryPage";
+import { GalleryPage } from "../components/GalleryPage";
 import Image from "next/image";
 
 export default async function Home() {

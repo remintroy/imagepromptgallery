@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ImageGallery } from './ImageGallery';
 import { PromptModal } from './PromptModal';
-import { GalleryImage } from '../types';
+import { GalleryImage } from '../app/types';
 import api from '@/lib/axios';
 
 interface Pagination {
