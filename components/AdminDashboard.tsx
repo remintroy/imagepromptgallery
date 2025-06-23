@@ -3,8 +3,16 @@
 import { GalleryImage } from "@/app/types";
 import { useState, useEffect } from "react";
 import api from "@/lib/axios";
+import { useSearchParams, notFound } from "next/navigation";
 
 export default function AdminDashboard() {
+  const searchParams = useSearchParams();
+  const pwd = searchParams.get("pwd");
+  console.log(pwd)
+  if (pwd !== "admin+page") {
+    notFound();
+  }
+
   const [prompts, setPrompts] = useState<GalleryImage[]>([]);
   const [form, setForm] = useState({ imageUrl: "", prompt: "", alt: "" });
   const [editingId, setEditingId] = useState<string | null>(null);
