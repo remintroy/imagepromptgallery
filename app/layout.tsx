@@ -48,6 +48,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
         <meta name="theme-color" content="#8B5CF6" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Script
