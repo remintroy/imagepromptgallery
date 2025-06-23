@@ -6,7 +6,8 @@ export const getPromptDataPaginated = async ({ page, limit = 40 }: { page: numbe
 
   await dbConnect();
   const total = await ImagePrompt.countDocuments();
-  const data: any = await ImagePrompt.find({}).sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
+  const dbResponse: any = await ImagePrompt.find({}).sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
+  const data: any = dbResponse?.map((e: any) => ({ ...e, _id: e?._id + "" }));
 
   return {
     data,
