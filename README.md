@@ -69,6 +69,7 @@ app/
 └── page.tsx               # Main page component
 ```
 
+
 ## Data Structure
 
 The application uses a simple data structure for images:
