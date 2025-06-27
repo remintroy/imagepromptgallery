@@ -51,7 +51,7 @@ export default function AdminDashboard() {
         await api.put(`/api/image-prompts?id=${editingId}`, form);
       } else {
         // Create prompt
-        await api.post("/api/image-/prompts", form);
+        await api.post("/api/image-prompts", form);
       }
       setForm({ imageUrl: "", prompt: "", alt: "" });
       setEditingId(null);
