@@ -2,6 +2,8 @@ import { getPromptDataPaginated } from "@/models/imagePromptsRepository";
 import { GalleryPage } from "../components/GalleryPage";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   // Fetch initial data from the API (SSR)
   const { data, pagination } = await getPromptDataPaginated({ page: 1 });
